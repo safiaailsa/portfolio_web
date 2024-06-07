@@ -1,0 +1,78 @@
+<html>
+
+<head>
+    <title>5026211128</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function validasi() {
+            //kalo gaada return valuenya makan akan selalu bernilai TRUE, kalo FALSE baru onsubmit akan STOP
+            //return true;
+            var nrp = document.getElementById("nrp").value;
+            var ibu = document.getElementById("ibu").value;
+
+            //cek nrp tidak boleh kosong
+            //if (nrp = ""){}
+            if (ibu.length == 0) {
+                document.getElementById("erroribu").innerHTML = "Nama Ibu Harus Diisi";
+                return false;
+            }
+            if (!/^[A-Za-z]+$/.test(ibu)) {
+                document.getElementById("erroribu").innerHTML = "Nama Ibu Harus Berupa Huruf";
+                return false;
+            }
+            if (ibu.length >= 30) {
+                document.getElementById("erroribu").innerHTML = "Nama terlalu panjang";
+                return false;
+            } 
+            if (ibu.length <= 5){
+
+            document.getElementById("erroribu").innerHTML = "Nama terlalu pendek";
+            return false;
+            }
+            if (nrp.length == 0) {
+                document.getElementById("errorNRP").innerHTML = "NRP harus diisi";
+                return false;
+            }
+            //if(!/^[0-9]+$/.test(nrp)){}
+            if (isNaN(nrp)) {
+                document.getElementById("errorNRP").innerHTML = "NRP harus berupa angka";
+                return false;
+            }
+            if (nrp.length == 10 || nrp.length == 15) {
+                return true;
+            } else {
+                document.getElementById("errorNRP").innerHTML = "NRP Harus 10 atau 15 Digit";
+                return false;
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>PENDAFTARAN BEASISWA ITS</h2>
+        <form method="get" action="https://google.com" onsubmit="return validasi()">
+            <div class="form-group">
+                <label for="nrp">NRP MAHASISWA</label>
+                <input type="text" id="nrp" name="nrp" class="form-control"
+                    placeholder="NRP Mahasiswa Pemohon Beasiswa">
+                <div id="errorNRP" style="color: red;"></div>
+            </div>
+            <div class="form-group">
+                <label for="nrp">NAMA IBU</label>
+                <input type="text" id="ibu" name="ibu" class="form-control"
+                    placeholder="Nama Ibu dari Mahasiswa Pemohon Beasiswa">
+                <div id="erroribu" style="color: red;"></div>
+            </div>
+            <input type="submit" class="btn btn-success" value="DAFTAR">
+        </form>
+    </div>
+</body>
+
+</html>
